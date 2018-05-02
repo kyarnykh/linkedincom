@@ -28,7 +28,7 @@ public class LinkedinLoginTest {
         WebElement signInButton = webDriver.findElement(By.xpath("//*[@id='login-submit']"));
         signInButton.sendKeys(Keys.RETURN);
 
-        sleep (5000);
+        sleep (10000);
 
         Assert.assertEquals(webDriver.getTitle(),"LinkedIn");
 
