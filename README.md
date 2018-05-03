@@ -2,15 +2,35 @@ Project: qaauto = Automation Quality Assurance
 Course by SkillUp
 Start date: 20.04.2018
 
-Lesson 1: BadCodeExample
 
- Part 1:
-   Steps:
+Environment setup steps:
      1. Download "IntelliJ IDEA" 2018.1.1 for Windows x64
      2. Download "JDK" 10.0.1 for Windows x64
      3. Download "FifeFox" browser for Windows
      4. Install software by default
      5. Download "geckodriver" from google
      6. File "geckodriver" insert to "system32" folder (C -> Windows -> System32)
-     7. Sync "IntelliJ IDEA" with "JDK":
-       1.
+     7. Sync "IntelliJ IDEA" with "JDK"
+
+
+Add source code to GitHub:
+     1. Create GitHub account
+     2. Create New Project (Project name is the same name project on the PC) with file ".gitignore"
+     3. Update new file .gitignore
+     4. Download Git client for Windows x64
+     5. Install Git client by default
+     6. Restart IntelliJ IDEA
+     7. Setting GitHub:
+        Click on "File" button > Settings > Version control > setup link to project on PC
+     8. Upload files and folders to GitHub on WEB via Drag and Drop
+     9. Sync PC Project with Web Project:
+        1. Click right on project folder
+        2. Click on GitHub
+        3. Commit depository
+        4. Click "Commit and Push" button
+
+
+
+
+
+
