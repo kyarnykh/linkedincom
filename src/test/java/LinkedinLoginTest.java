@@ -32,6 +32,8 @@ public class LinkedinLoginTest {
 
         Assert.assertEquals(webDriver.getTitle(),"LinkedIn");
 
+        webDriver.close();
+
 
     }
 }
