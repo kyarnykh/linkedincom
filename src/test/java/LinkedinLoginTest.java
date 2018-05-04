@@ -38,7 +38,7 @@ public class LinkedinLoginTest {
         WebElement signInButton = webDriver.findElement(By.xpath("//*[@id='login-submit']"));
         signInButton.click();
 
-        sleep(3000);
+        sleep(5000);
 
         Assert.assertEquals(webDriver.getTitle(), "LinkedIn",
                 "Title is missing");
@@ -57,7 +57,7 @@ public class LinkedinLoginTest {
          userPasswordField.sendKeys("");
 
          singInButton.click();
-         sleep(3000);
+         sleep(5000);
          Assert.assertTrue(singInButton.isDisplayed(), "Sing In button is missing");
      }
 
