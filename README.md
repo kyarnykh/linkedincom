@@ -14,6 +14,7 @@ Environment setup steps:
 
 
 Add source code to GitHub:
+ Example 1:
      1. Create GitHub account
      2. Create New Project (Project name is the same name project on the PC) with file ".gitignore"
      3. Update new file .gitignore
@@ -26,8 +27,20 @@ Add source code to GitHub:
      9. Sync PC Project with Web Project:
         1. Click right on project folder
         2. Click on GitHub
-        3. Commit depository
+        3. Commit repository
         4. Click "Commit and Push" button
+        5. Click "push" button
+
+ Example 2:
+     1. Create new repository at the GIThub (Enter repository name)
+     2. Copy link to repository
+     3. Enable version control integration in IDE (VCS  => enable version control integration)
+     4. Add link to IDE : VCS => GIT => Remotes
+     5. At the IDE select VCS => "Commit..."
+     6. At the "Commit Changes" window choose needed files and folders
+     7. Enter commit text that describes changes
+     8. Select VCS => Git => "Push"
+     9. Select needed branch and press "Push" button
 
 
 
