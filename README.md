@@ -43,7 +43,46 @@ Add source code to GitHub:
      9. Select needed branch and press "Push" button
 
 
+  Test cases for Login form:
+
+     Positive Test Cases:
+     1.
+     - Correct Email
+     - Correct Password
+     2.
+     - CORRECT EMAIL
+     - Correct Password
+     3.
+     - Phone number
+     - Correct Password
+     4.
+     - EMPTY SPACE Correct Email
+     - Correct Password
 
 
-
+     Negative Test Cases:
+     1.
+     - Without Email
+     - Without Password
+     2.
+     - Without Email
+     - Correct Password
+     3.
+     - Correct Email
+     - Without Password
+     4.
+     - Incorrect Email
+     - Correct Password
+     5.
+     - Correct Email
+     - Incorrect Password
+     6.
+     - Incorrect Phone number
+     - Correct Password
+     7.
+     - Incorrect Post Service
+     - Correct Password
+     8.
+     - Incorrect Email with other language
+     - Correct Password
 
