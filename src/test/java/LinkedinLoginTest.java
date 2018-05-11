@@ -41,7 +41,7 @@ public class LinkedinLoginTest {
         sleep(5000);
 
         Assert.assertEquals(webDriver.getTitle(), "LinkedIn",
-                "Title is missing");
+                "Home page title is wrong");
     }
 
     @Test
@@ -62,7 +62,7 @@ public class LinkedinLoginTest {
         sleep(5000);
 
         Assert.assertEquals(webDriver.getTitle(), "LinkedIn",
-                "Title is missing");
+                "Home page title is wrong");
     }
 
     @Test
@@ -83,7 +83,7 @@ public class LinkedinLoginTest {
         sleep(5000);
 
         Assert.assertEquals(webDriver.getTitle(), "LinkedIn",
-                "Title is missing");
+                "Home page title is wrong");
     }
 
     @Test
@@ -104,7 +104,7 @@ public class LinkedinLoginTest {
         sleep(5000);
 
         Assert.assertEquals(webDriver.getTitle(), "LinkedIn",
-                "Title is missing");
+                "Home page title is wrong");
     }
 
     @Test
