@@ -100,62 +100,49 @@ public class LinkedinLoginTest {
 //                "Sing In button is missing");
 
         linkedinLoginPage.login("", "correctPassword");
-
         Assert.assertTrue(linkedinLoginPage.isSignInButtonDisplayed(),
                 "Sing In button is missing");
     }
 
     @Test
-    public void verifyLoginWithEmptyPassword() throws InterruptedException {
-        WebElement singInButton = webDriver.findElement(By.xpath("//*[@id='login-submit']"));
-        Assert.assertTrue(singInButton.isDisplayed(),
+    public void verifyLoginWithEmptyPassword() {
+        LinkedinLoginPage linkedinLoginPage = new LinkedinLoginPage(webDriver);
+//      Assert.assertTrue(linkedinLoginPage.isSignInButtonDisplayed(),
+//                "Sing In button is missing");
+
+        linkedinLoginPage.login("correctEmail", "");
+        Assert.assertTrue(linkedinLoginPage.isSignInButtonDisplayed(),
                 "Sing In button is missing");
-
-        WebElement userEmailField = webDriver.findElement(By.xpath("//*[@id='login-email']"));
-        userEmailField.sendKeys("correctEmail@gmail.com");
-
-        WebElement userPasswordField = webDriver.findElement(By.xpath("//*[@id='login-password']"));
-        userPasswordField.sendKeys("");
-
-        singInButton.click();
-        sleep(5000);
-        Assert.assertTrue(singInButton.isDisplayed(), "Sing In button is missing");
     }
 
     @Test
-    public void verifyLoginWithIncorrectUsername() throws InterruptedException {
-        WebElement singInButton = webDriver.findElement(By.xpath("//*[@id='login-submit']"));
-        Assert.assertTrue(singInButton.isDisplayed(),
-                "Sing In button is missing");
+    public void verifyLoginWithIncorrectUsername() {
+        LinkedinLoginPage linkedinLoginPage = new LinkedinLoginPage(webDriver);
+//        Assert.assertTrue(linkedinLoginPage.isSignInButtonDisplayed(),
+//                "Sing In button is missing");
 
-        WebElement userEmailField = webDriver.findElement(By.xpath("//*[@id='login-email']"));
-        userEmailField.sendKeys("incorrectEmail@gmail.com");
+        linkedinLoginPage.login("incorrectEmail", "correctPassword");
 
-        WebElement userPasswordField = webDriver.findElement(By.xpath("//*[@id='login-password']"));
-        userPasswordField.sendKeys("correctPassword");
-
-        singInButton.click();
-        sleep(5000);
-        WebElement errorMessage = webDriver.findElement(By.xpath("//*[@id='session_key-login-error']"));
-        Assert.assertTrue(errorMessage.isDisplayed(), "Error message is missing");
+        LinkedinErrorPage linkedinErrorPage = new LinkedinErrorPage(webDriver);
+        Assert.assertTrue(linkedinErrorPage.isLoginErrorMessageDisplayed(),
+                "Error message is missing");
+        Assert.assertEquals(linkedinErrorPage.getCurrentLoginError(),"Этот адрес эл. почты не зарегистрирован в LinkedIn. Повторите попытку.",
+                "Error message is incorrect");
     }
 
     @Test
-    public void verifyLoginWithIncorrectPassword() throws InterruptedException {
-        WebElement singInButton = webDriver.findElement(By.xpath("//*[@id='login-submit']"));
-        Assert.assertTrue(singInButton.isDisplayed(),
-                "Sing In button is missing");
+    public void verifyLoginWithIncorrectPassword() {
+        LinkedinLoginPage linkedinLoginPage = new LinkedinLoginPage(webDriver);
+//        Assert.assertTrue(linkedinLoginPage.isSignInButtonDisplayed(),
+//                "Sing In button is missing");
 
-        WebElement userEmailField = webDriver.findElement(By.xpath("//*[@id='login-email']"));
-        userEmailField.sendKeys("correctEmail@gmail.com");
+        linkedinLoginPage.login("correctEmail", "incorrectPassword");
 
-        WebElement userPasswordField = webDriver.findElement(By.xpath("//*[@id='login-password']"));
-        userPasswordField.sendKeys("incorrectPassword");
-
-        singInButton.click();
-        sleep(5000);
-        WebElement errorMessage = webDriver.findElement(By.xpath("//*[@id='session_password-login-error']"));
-        Assert.assertTrue(errorMessage.isDisplayed(), "Error message is missing");
+        LinkedinErrorPage linkedinErrorPage = new LinkedinErrorPage(webDriver);
+        Assert.assertTrue(linkedinErrorPage.isPasswordErrorMessageDisplayed(),
+                "Error message is missing");
+        Assert.assertEquals(linkedinErrorPage.getCurrentPasswordError(), "Это неверный пароль. Повторите попытку или измените пароль.",
+                "Error message is incorrect");
     }
 
     @Test

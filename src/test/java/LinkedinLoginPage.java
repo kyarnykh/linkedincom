@@ -35,6 +35,4 @@ public class LinkedinLoginPage {
         return webDriver.getTitle();
     }
 
-
-
 }

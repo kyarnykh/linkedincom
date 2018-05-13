@@ -10,7 +10,7 @@ public class LinkedinHomePage {
 
     public LinkedinHomePage(WebDriver webDriver) {
         this.webDriver = webDriver;
-        initElements();
+        initElements(); //почему мы вызываем инициализацию именно в конструкторе
     }
 
     public void initElements() {
@@ -21,7 +21,7 @@ public class LinkedinHomePage {
         return profileMenu.isDisplayed();
     }
 
-    public String getCurrentPageTittle(){
+    public String getCurrentPageTittle() {
         return webDriver.getTitle();
     }
 
