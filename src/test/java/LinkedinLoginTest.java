@@ -146,21 +146,18 @@ public class LinkedinLoginTest {
     }
 
     @Test
-    public void verifyLoginWithIncorrectUsernamePhoneNumber() throws InterruptedException {
-        WebElement singInButton = webDriver.findElement(By.xpath("//*[@id='login-submit']"));
-        Assert.assertTrue(singInButton.isDisplayed(),
-                "Sing In button is missing");
+    public void verifyLoginWithIncorrectUsernamePhoneNumber() {
+        LinkedinLoginPage linkedinLoginPage = new LinkedinLoginPage(webDriver);
+//        Assert.assertTrue(linkedinLoginPage.isSignInButtonDisplayed(),
+//                "Sing In button is missing");
 
-        WebElement userEmailField = webDriver.findElement(By.xpath("//*[@id='login-email']"));
-        userEmailField.sendKeys("999888899889");
+        linkedinLoginPage.login("incorrectPhoneNumber", "correctPassword");
 
-        WebElement userPasswordField = webDriver.findElement(By.xpath("//*[@id='login-password']"));
-        userPasswordField.sendKeys("correctPassword");
-
-        singInButton.click();
-        sleep(5000);
-        WebElement errorMessage = webDriver.findElement(By.xpath("//*[@id='session_key-login-error']"));
-        Assert.assertTrue(errorMessage.isDisplayed(), "Error message is missing");
+        LinkedinErrorPage linkedinErrorPage = new LinkedinErrorPage(webDriver);
+        Assert.assertTrue(linkedinErrorPage.isLoginErrorMessageDisplayed(),
+                "Error message is missing");
+        Assert.assertEquals(linkedinErrorPage.getCurrentPhoneError(),"Обязательно включите в номер значок «+» и код своей страны.",
+                "Error message is incorrect");
     }
 
     @Test

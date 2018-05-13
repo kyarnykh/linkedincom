@@ -30,8 +30,13 @@ public class LinkedinErrorPage {
         return loginErrorMessage.getText();
     }
 
+    public String getCurrentPhoneError(){
+        return loginErrorMessage.getText();
+    }
+
     public String getCurrentPasswordError(){
         return passwordErrorMessage.getText();
     }
+
 
 }
