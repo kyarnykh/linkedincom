@@ -21,6 +21,10 @@ public class LinkedinHomePage {
         return profileMenu.isDisplayed();
     }
 
+    public String getCurrentPageTittle(){
+        return webDriver.getTitle();
+    }
+
 
 
 }

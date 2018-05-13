@@ -14,6 +14,9 @@ public class LinkedinLoginTest {
     public void before () {
         webDriver = new FirefoxDriver();
         webDriver.get("https://www.linkedin.com");
+//        LinkedinLoginPage linkedinLoginPage = new LinkedinLoginPage(webDriver);
+//        Assert.assertEquals(linkedinLoginPage.getCurrentPageTittle(), "LinkedIn: Войти или зарегистрироваться",
+//                "Login page title is wrong");
     }
 
     @AfterMethod
@@ -31,100 +34,75 @@ public class LinkedinLoginTest {
         linkedinLoginPage.login("correctEmail", "correctPassword");
 
         LinkedinHomePage linkedinHomePage = new LinkedinHomePage(webDriver);
-
         Assert.assertTrue(linkedinHomePage.isProfileMenuIsDisplayed(),
                 "Profile menu is not displayed");
-
-        // FIXme: use inheritance
-        Assert.assertEquals(linkedinLoginPage.getCurrentPageTittle(), "LinkedIn",
+        Assert.assertEquals(linkedinHomePage.getCurrentPageTittle(), "LinkedIn",
                 "Home page title is wrong");
     }
+
+    @Test
+    public void successfulCaseIntensiveLogin() {
+        LinkedinLoginPage linkedinLoginPage = new LinkedinLoginPage(webDriver);
+        Assert.assertEquals(linkedinLoginPage.getCurrentPageTittle(), "LinkedIn: Войти или зарегистрироваться",
+                "Title is missing");
+
+        linkedinLoginPage.login("CORRECTEMAIL", "correctPassword");
+
+        LinkedinHomePage linkedinHomePage = new LinkedinHomePage(webDriver);
+        Assert.assertTrue(linkedinHomePage.isProfileMenuIsDisplayed(),
+                "Profile menu is not displayed");
+        Assert.assertEquals(linkedinHomePage.getCurrentPageTittle(), "LinkedIn",
+                "Home page title is wrong");
+    }
+
+    @Test
+    public void successfulCaseLoginPhoneNumber() {
+        LinkedinLoginPage linkedinLoginPage = new LinkedinLoginPage(webDriver);
+        Assert.assertEquals(linkedinLoginPage.getCurrentPageTittle(), "LinkedIn: Войти или зарегистрироваться",
+                "Title is missing");
+        linkedinLoginPage.login("correctPhoneNumber", "correctPassword");
+
+        LinkedinHomePage linkedinHomePage = new LinkedinHomePage(webDriver);
+        Assert.assertTrue(linkedinHomePage.isProfileMenuIsDisplayed(),
+                "Profile menu is not displayed");
+        Assert.assertEquals(linkedinHomePage.getCurrentPageTittle(), "LinkedIn",
+                "Home page title is wrong");
+    }
+
+    @Test
+    public void successfulCaseLoginWithEmptySpace() {
+        LinkedinLoginPage linkedinLoginPage = new LinkedinLoginPage(webDriver);
+        Assert.assertEquals(linkedinLoginPage.getCurrentPageTittle(), "LinkedIn: Войти или зарегистрироваться",
+                "Title is missing");
+
+        linkedinLoginPage.login("        correctEmail        ", "correctPassword");
+
+        LinkedinHomePage linkedinHomePage = new LinkedinHomePage(webDriver);
+        Assert.assertTrue(linkedinHomePage.isProfileMenuIsDisplayed(),
+                "Profile menu is not displayed");
+        Assert.assertEquals(linkedinHomePage.getCurrentPageTittle(), "LinkedIn",
+                "Home page title is wrong");
+    }
+
 
     @Test
     public void verifyLoginWithEmptyUsernameAndPassword() {
         LinkedinLoginPage linkedinLoginPage = new LinkedinLoginPage(webDriver);
         linkedinLoginPage.login("", "");
-        Assert.assertTrue(linkedinLoginPage.isSignInButtonDisplayed(),"Sing In button is missing");
-    }
-
-    @Test
-    public void successfulCaseIntensiveLogin() throws InterruptedException {
-        Assert.assertEquals(webDriver.getTitle(), "LinkedIn: Войти или зарегистрироваться",
-                "Title is missing");
-        WebElement userEmailField = webDriver.findElement(By.xpath("//*[@id='login-email']"));
-        String userLogin = "CORRECTEMAILL@gmail.com";
-        userEmailField.sendKeys(userLogin);
-
-        WebElement userPasswordField = webDriver.findElement(By.xpath("//*[@id='login-password']"));
-        String userPassword = "correctPassword";
-        userPasswordField.sendKeys(userPassword);
-
-        WebElement signInButton = webDriver.findElement(By.xpath("//*[@id='login-submit']"));
-        signInButton.click();
-
-        sleep(5000);
-
-        Assert.assertEquals(webDriver.getTitle(), "LinkedIn",
-                "Home page title is wrong");
-    }
-
-    @Test
-    public void successfulCaseLoginPhoneNumber() throws InterruptedException {
-        Assert.assertEquals(webDriver.getTitle(), "LinkedIn: Войти или зарегистрироваться",
-                "Title is missing");
-        WebElement userEmailField = webDriver.findElement(By.xpath("//*[@id='login-email']"));
-        String userLogin = "correctPhoneNumber";
-        userEmailField.sendKeys(userLogin);
-
-        WebElement userPasswordField = webDriver.findElement(By.xpath("//*[@id='login-password']"));
-        String userPassword = "correctPassword";
-        userPasswordField.sendKeys(userPassword);
-
-        WebElement signInButton = webDriver.findElement(By.xpath("//*[@id='login-submit']"));
-        signInButton.click();
-
-        sleep(5000);
-
-        Assert.assertEquals(webDriver.getTitle(), "LinkedIn",
-                "Home page title is wrong");
-    }
-
-    @Test
-    public void successfulCaseLoginWithEmptySpace() throws InterruptedException {
-        Assert.assertEquals(webDriver.getTitle(), "LinkedIn: Войти или зарегистрироваться",
-                "Title is missing");
-        WebElement userEmailField = webDriver.findElement(By.xpath("//*[@id='login-email']"));
-        String userLogin = "emptySpaceCoorectEmail@gmail.com";
-        userEmailField.sendKeys(userLogin);
-
-        WebElement userPasswordField = webDriver.findElement(By.xpath("//*[@id='login-password']"));
-        String userPassword = "correctPassword";
-        userPasswordField.sendKeys(userPassword);
-
-        WebElement signInButton = webDriver.findElement(By.xpath("//*[@id='login-submit']"));
-        signInButton.click();
-
-        sleep(5000);
-
-        Assert.assertEquals(webDriver.getTitle(), "LinkedIn",
-                "Home page title is wrong");
-    }
-
-    @Test
-    public void verifyLoginWithEmptyUsername() throws InterruptedException {
-        WebElement singInButton = webDriver.findElement(By.xpath("//*[@id='login-submit']"));
-        Assert.assertTrue(singInButton.isDisplayed(),
+        Assert.assertTrue(linkedinLoginPage.isSignInButtonDisplayed(),
                 "Sing In button is missing");
+    }
 
-        WebElement userEmailField = webDriver.findElement(By.xpath("//*[@id='login-email']"));
-        userEmailField.sendKeys("");
+    @Test
+    public void verifyLoginWithEmptyUsername() {
+        LinkedinLoginPage linkedinLoginPage = new LinkedinLoginPage(webDriver);
+//      Assert.assertTrue(linkedinLoginPage.isSignInButtonDisplayed(),
+//                "Sing In button is missing");
 
-        WebElement userPasswordField = webDriver.findElement(By.xpath("//*[@id='login-password']"));
-        userPasswordField.sendKeys("correctPassword");
+        linkedinLoginPage.login("", "correctPassword");
 
-        singInButton.click();
-        sleep(5000);
-        Assert.assertTrue(singInButton.isDisplayed(), "Sing In button is missing");
+        Assert.assertTrue(linkedinLoginPage.isSignInButtonDisplayed(),
+                "Sing In button is missing");
     }
 
     @Test
