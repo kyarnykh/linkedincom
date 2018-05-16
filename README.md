@@ -77,12 +77,15 @@ Add source code to GitHub:
      - Correct Email
      - Incorrect Password
      6.
+     - Correct Email
+     - Incorrect Password (Small)
+     7.
      - Incorrect Phone number
      - Correct Password
-     7.
+     8.
      - Incorrect Post Service
      - Correct Password
-     8.
+     9.
      - Incorrect Email with other language
      - Correct Password
 

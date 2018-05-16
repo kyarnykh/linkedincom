@@ -10,7 +10,7 @@ public class LinkedinHomePage {
 
     public LinkedinHomePage(WebDriver webDriver) {
         this.webDriver = webDriver;
-        initElements(); //почему мы вызываем инициализацию именно в конструкторе
+        initElements();
     }
 
     public void initElements() {

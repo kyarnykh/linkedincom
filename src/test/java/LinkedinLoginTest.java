@@ -21,14 +21,22 @@ public class LinkedinLoginTest {
         webDriver.close();
     }
 
+    @DataProvider
+    public Object[][] ValidDataProvider() {
+        return new Object[][]{
+                { "correctEmail", "correctPassword" },
+                { "CORRECTEMAIL", "correctPassword" },
+        };
+    }
 
-    @Test
-    public void successfulLoginTest() {
+
+    @Test(dataProvider = "ValidDataProvider")
+    public void successfulLoginTest(String userEmail, String userPassword) {
         LinkedinLoginPage linkedinLoginPage = new LinkedinLoginPage(webDriver);
         Assert.assertEquals(linkedinLoginPage.getCurrentPageTittle(), "LinkedIn: Войти или зарегистрироваться",
                 "Login page title is wrong");
 
-        linkedinLoginPage.login("correctEmail", "correctPassword");
+        linkedinLoginPage.login(userEmail, userPassword);
 
         LinkedinHomePage linkedinHomePage = new LinkedinHomePage(webDriver);
         Assert.assertTrue(linkedinHomePage.isProfileMenuIsDisplayed(),
@@ -139,6 +147,19 @@ public class LinkedinLoginTest {
         Assert.assertTrue(linkedinErrorPage.isPasswordErrorMessageDisplayed(),
                 "Error message is missing");
         Assert.assertEquals(linkedinErrorPage.getCurrentPasswordError(), "Это неверный пароль. Повторите попытку или измените пароль.",
+                "Error message is incorrect");
+    }
+
+    @Test
+    public void verifyLoginWithIncorrectPasswordSmall() {
+        LinkedinLoginPage linkedinLoginPage = new LinkedinLoginPage(webDriver);
+//        Assert.assertTrue(linkedinLoginPage.isSignInButtonDisplayed(),
+//                "Sing In button is missing");
+
+        linkedinLoginPage.login("correctEmail", "smallPassword");
+
+        LinkedinErrorPage linkedinErrorPage = new LinkedinErrorPage(webDriver);
+        Assert.assertEquals(linkedinErrorPage.getBannerErrorMessage(), "При заполнении формы были допущены ошибки. Проверьте и исправьте отмеченные поля.",
                 "Error message is incorrect");
     }
 

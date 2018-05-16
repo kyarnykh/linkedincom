@@ -7,6 +7,7 @@ public class LinkedinErrorPage {
 
     private WebElement loginErrorMessage;
     private WebElement passwordErrorMessage;
+    private WebElement bannerErrorMessage;
 
     public LinkedinErrorPage(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -16,6 +17,8 @@ public class LinkedinErrorPage {
     private void initElements(){
         loginErrorMessage = webDriver.findElement(By.xpath("//*[@id='session_key-login-error']"));
         passwordErrorMessage = webDriver.findElement(By.xpath("//*[@id='session_password-login-error']"));
+        bannerErrorMessage = webDriver.findElement(By.xpath("//div[@role='alert']"));
+
     }
 
     public boolean isLoginErrorMessageDisplayed(){
@@ -40,6 +43,10 @@ public class LinkedinErrorPage {
 
     public String getCurrentPasswordError(){
         return passwordErrorMessage.getText();
+    }
+
+    public String getBannerErrorMessage() {
+        return bannerErrorMessage.getText();
     }
 
 
