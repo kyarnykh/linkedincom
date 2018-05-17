@@ -85,7 +85,20 @@ public class LinkedinLoginTest {
 
         LinkedinErrorPage linkedinErrorPage = new LinkedinErrorPage(webDriver);
         Assert.assertEquals(linkedinErrorPage.getBannerErrorMessage(), "При заполнении формы были допущены ошибки. Проверьте и исправьте отмеченные поля.",
-                "Error message is missing");
+                "Error banner is missing");
+    }
+
+    @Test(dataProvider = "NegativeDataProviderErrorPage")
+    public void verifyLoginWithIncorrectLoginError (String userName, String userPassword) {
+        LinkedinLoginPage linkedinLoginPage = new LinkedinLoginPage(webDriver);
+        Assert.assertTrue(linkedinLoginPage.isSignInButtonDisplayed(),
+                "Sing In button is missing");
+
+        linkedinLoginPage.login(userName, userPassword);
+
+        LinkedinErrorPage linkedinErrorPage = new LinkedinErrorPage(webDriver);
+        Assert.assertTrue(linkedinErrorPage.isLoginErrorMessageDisplayed(),
+                "Error is missing");
     }
 
 
