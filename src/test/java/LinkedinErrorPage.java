@@ -2,16 +2,20 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class LinkedinErrorPage {
-    private WebDriver webDriver;
+public class LinkedinErrorPage extends LinkedinBasePage {
 
     private WebElement loginErrorMessage;
     private WebElement passwordErrorMessage;
     private WebElement bannerErrorMessage;
 
     public LinkedinErrorPage(WebDriver webDriver) {
-        this.webDriver = webDriver;
+        super(webDriver);
         initElements();
+    }
+
+    @Override
+    boolean isPageLoaded() {
+        return loginErrorMessage.isDisplayed();
     }
 
     private void initElements(){
@@ -21,8 +25,8 @@ public class LinkedinErrorPage {
 
     }
 
-    public boolean isLoginErrorMessageDisplayed(){
-        return loginErrorMessage.isDisplayed();
+    public String getBannerErrorMessage() {
+        return bannerErrorMessage.getText();
     }
 
     public boolean isPasswordErrorMessageDisplayed(){
@@ -43,10 +47,6 @@ public class LinkedinErrorPage {
 
     public String getCurrentPasswordError(){
         return passwordErrorMessage.getText();
-    }
-
-    public String getBannerErrorMessage() {
-        return bannerErrorMessage.getText();
     }
 
 

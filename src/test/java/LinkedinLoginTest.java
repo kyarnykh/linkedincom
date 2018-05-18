@@ -53,14 +53,14 @@ public class LinkedinLoginTest {
     @Test(dataProvider = "PositiveDataProviderHomePage")
     public void successfulLoginTest(String userEmail, String userPassword) {
         LinkedinLoginPage linkedinLoginPage = new LinkedinLoginPage(webDriver);
-        Assert.assertEquals(linkedinLoginPage.getCurrentPageTittle(), "LinkedIn: Войти или зарегистрироваться",
-                "Login page title is wrong");
+        Assert.assertTrue(linkedinLoginPage.isPageLoaded(),
+                "Login page is not loaded");
 
         linkedinLoginPage.login(userEmail, userPassword);
 
         LinkedinHomePage linkedinHomePage = new LinkedinHomePage(webDriver);
-        Assert.assertTrue(linkedinHomePage.isProfileMenuIsDisplayed(),
-                "Profile menu is not displayed");
+        Assert.assertTrue(linkedinHomePage.isPageLoaded(),
+                "Home page is not loaded");
     }
 
 
@@ -69,7 +69,7 @@ public class LinkedinLoginTest {
         LinkedinLoginPage linkedinLoginPage = new LinkedinLoginPage(webDriver);
 
         linkedinLoginPage.login(userName, userPassword);
-        Assert.assertTrue(linkedinLoginPage.isSignInButtonDisplayed(),
+        Assert.assertTrue(linkedinLoginPage.isPageLoaded(),
                 "Sing In button is missing");
     }
 
@@ -77,7 +77,7 @@ public class LinkedinLoginTest {
     @Test(dataProvider = "NegativeDataProviderErrorPage")
     public void verifyLoginWithIncorrectLoginAndPassword (String userName, String userPassword) {
         LinkedinLoginPage linkedinLoginPage = new LinkedinLoginPage(webDriver);
-        Assert.assertTrue(linkedinLoginPage.isSignInButtonDisplayed(),
+        Assert.assertTrue(linkedinLoginPage.isPageLoaded(),
                 "Sing In button is missing");
 
         linkedinLoginPage.login(userName, userPassword);
@@ -90,13 +90,13 @@ public class LinkedinLoginTest {
     @Test(dataProvider = "NegativeDataProviderErrorPage")
     public void verifyLoginWithIncorrectLoginError (String userName, String userPassword) {
         LinkedinLoginPage linkedinLoginPage = new LinkedinLoginPage(webDriver);
-        Assert.assertTrue(linkedinLoginPage.isSignInButtonDisplayed(),
-                "Sing In button is missing");
+        Assert.assertTrue(linkedinLoginPage.isPageLoaded(),
+                "Login page is not loaded");
 
         linkedinLoginPage.login(userName, userPassword);
 
         LinkedinErrorPage linkedinErrorPage = new LinkedinErrorPage(webDriver);
-        Assert.assertTrue(linkedinErrorPage.isLoginErrorMessageDisplayed(),
+        Assert.assertTrue(linkedinErrorPage.isPageLoaded(),
                 "Error is missing");
     }
 
