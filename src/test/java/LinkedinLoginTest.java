@@ -25,6 +25,7 @@ public class LinkedinLoginTest {
                 {"CORRECTEMAIL", "correctPassword"},
                 {"correctPhoneNumber", "correctPassword"},
                 {"      correctEmail    ", "correctPassword"},
+                {"correctEmail", "  correctPassword    "},
         };
     }
 
@@ -66,8 +67,6 @@ public class LinkedinLoginTest {
     @Test(dataProvider = "NegativeDataProviderLoginPage")
     public void verifyLoginAndPasswordWithEmptySpace (String userName, String userPassword) {
         LinkedinLoginPage linkedinLoginPage = new LinkedinLoginPage(webDriver);
-//      Assert.assertTrue(linkedinLoginPage.isSignInButtonDisplayed(),
-//                "Sing In button is missing");
 
         linkedinLoginPage.login(userName, userPassword);
         Assert.assertTrue(linkedinLoginPage.isSignInButtonDisplayed(),
