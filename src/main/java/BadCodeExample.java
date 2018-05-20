@@ -21,16 +21,15 @@ public static void main(String args[]) throws InterruptedException {
 
     sleep (3000);
 
-    List<WebElement> searchResults = webDriver.findElements(By.xpath("//div[@class='srg']/div[@class='g']"));
+    List<WebElement> searchResults1 = webDriver.findElements(By.xpath("//div[@class='srg']/div[@class='g']"));
 
-    System.out.println("Number of results: "+searchResults.size());
+    System.out.println("Number of results: "+searchResults1.size());
 
-    for (WebElement searchResult : searchResults) {
-        String searchResultText = searchResult.getText();
+    for (WebElement searchResult1 : searchResults1) {
+        String searchResultText = searchResult1.getText();
         if (searchResultText.contains(searchTerm)) {
             System.out.println("Search term found in result item");
         }
-        System.out.println("XXXX");
         System.out.println(searchResultText);
     }
 
