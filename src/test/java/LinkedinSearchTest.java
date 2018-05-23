@@ -32,14 +32,13 @@ public class LinkedinSearchTest {
     @DataProvider
     public Object[][] DataSearch() {
         return new Object[][]{
-                {"correctNumber", "correctPassword", "HR"},
+                {"0938319813", "88910106", "HR"},
         };
     }
 
 
-
     @Test (dataProvider = "DataSearch")
-    public void basicSearchTest(String userEmail, String userPassword, String searchText) throws InterruptedException {
+    public void basicSearchTest(String userEmail, String userPassword, String Searchterm) throws InterruptedException {
         LinkedinLoginPage linkedinLoginPage = new LinkedinLoginPage(webDriver);
         Assert.assertTrue(linkedinLoginPage.isPageLoaded(),
                 "Login page is not loaded");
@@ -50,29 +49,27 @@ public class LinkedinSearchTest {
         Assert.assertTrue(linkedinHomePage.isPageLoaded(),
                 "Home page is not loaded");
 
-        sleep(5000);
+        sleep(3000);
 
-        linkedinHomePage.search(searchText);
+        linkedinHomePage.search(Searchterm);
 
-        sleep(5000);
+        sleep(3000);
 
-        LinkedinGlobalSearchPage linkedinGlobalSearchPage = new LinkedinGlobalSearchPage(webDriver);
-        Assert.assertTrue(linkedinGlobalSearchPage.isPageLoaded(),
+        LinkedinSearchPage linkedinSearchPage = new LinkedinSearchPage(webDriver);
+        Assert.assertTrue(linkedinSearchPage.isPageLoaded(),
                 "Search page is not loaded");
 
-        List<WebElement> searchResults = webDriver.findElements(By.xpath("//*[@class='search-results__list list-style-none']"));
+        Assert.assertEquals(linkedinSearchPage.getResultsCount(), 10,
+                "Search results count is wrong");
 
-        System.out.println("Number of results: "+searchResults.size());
+        List<String> resultsList = linkedinSearchPage.getResultsList();
 
-        for (WebElement searchResult : searchResults) {
-            String searchResultText = searchResult.getText();
-            if (searchResultText.contains(searchText)) {
-                System.out.println("Search term found in result item");
-            }
-            System.out.println(searchResultText);
+        for(String result:resultsList){
+            Assert.assertTrue(result.contains(Searchterm),
+                    "Searchterm"+Searchterm+"is missing in following results: \n"+result);
         }
 
-    }
 
+    }
 
 }
