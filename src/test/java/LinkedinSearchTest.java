@@ -32,7 +32,7 @@ public class LinkedinSearchTest {
     @DataProvider
     public Object[][] DataSearch() {
         return new Object[][]{
-                {"0938319813", "88910106", "HR"},
+                {"correctEmail", "correctPassword", "HR"},
         };
     }
 
