@@ -1,6 +1,9 @@
+package page;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import page.LinkedinBasePage;
 
 public class LinkedinErrorPage extends LinkedinBasePage {
 
@@ -13,7 +16,7 @@ public class LinkedinErrorPage extends LinkedinBasePage {
     }
 
     @Override
-    boolean isPageLoaded() {
+    public boolean isPageLoaded() {
         return loginErrorMessage.isDisplayed();
     }
 

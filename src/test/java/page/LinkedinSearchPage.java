@@ -1,7 +1,10 @@
+package page;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import page.LinkedinBasePage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +12,7 @@ import java.util.List;
 public class LinkedinSearchPage extends LinkedinBasePage {
 
 
-    private WebElement resultsCounter;
+    private WebElement searchMenu;
     List<WebElement> searchResults;
 
     public LinkedinSearchPage(WebDriver webDriver) {
@@ -18,13 +21,13 @@ public class LinkedinSearchPage extends LinkedinBasePage {
     }
 
     @Override
-    boolean isPageLoaded() {
-        return resultsCounter.isDisplayed();
+    public boolean isPageLoaded() {
+        return searchMenu.isDisplayed();
     }
 
     public void initElements() {
-        resultsCounter = webDriver.findElement(By.xpath("//h3[contains(text(), 'results')]"));
-        searchResults = webDriver.findElements(By.xpath("//li[contains(@class,'search-result search-result__occluded-item')]"));
+        searchMenu = webDriver.findElement(By.xpath("//*[@data-vertical='PEOPLE']"));
+        searchResults = webDriver.findElements(By.xpath("//li[contains(@class, 'search-result__occluded-item')]"));
     }
 
     public int getResultsCount() {

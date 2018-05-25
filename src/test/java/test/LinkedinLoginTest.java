@@ -1,22 +1,13 @@
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+package test;
+
 import org.testng.Assert;
 import org.testng.annotations.*;
+import page.LinkedinErrorPage;
+import page.LinkedinHomePage;
 
 
-public class LinkedinLoginTest {
-    WebDriver webDriver;
+public class LinkedinLoginTest extends LinkedinBaseTest {
 
-    @BeforeMethod
-    public void before() {
-        webDriver = new FirefoxDriver();
-        webDriver.get("https://www.linkedin.com");
-    }
-
-    @AfterMethod
-    public void after() {
-        webDriver.close();
-    }
 
     @DataProvider
     public Object[][] PositiveDataProviderHomePage() {
@@ -52,13 +43,9 @@ public class LinkedinLoginTest {
 
     @Test(dataProvider = "PositiveDataProviderHomePage")
     public void successfulLoginTest(String userEmail, String userPassword) {
-        LinkedinLoginPage linkedinLoginPage = new LinkedinLoginPage(webDriver);
         Assert.assertTrue(linkedinLoginPage.isPageLoaded(),
                 "Login page is not loaded");
-
-        linkedinLoginPage.login(userEmail, userPassword);
-
-        LinkedinHomePage linkedinHomePage = new LinkedinHomePage(webDriver);
+        LinkedinHomePage linkedinHomePage = linkedinLoginPage.login(userEmail, userPassword);
         Assert.assertTrue(linkedinHomePage.isPageLoaded(),
                 "Home page is not loaded");
     }
@@ -66,8 +53,6 @@ public class LinkedinLoginTest {
 
     @Test(dataProvider = "NegativeDataProviderLoginPage")
     public void verifyLoginAndPasswordWithEmptySpace (String userName, String userPassword) {
-        LinkedinLoginPage linkedinLoginPage = new LinkedinLoginPage(webDriver);
-
         linkedinLoginPage.login(userName, userPassword);
         Assert.assertTrue(linkedinLoginPage.isPageLoaded(),
                 "Sing In button is missing");
@@ -76,7 +61,6 @@ public class LinkedinLoginTest {
 
     @Test(dataProvider = "NegativeDataProviderErrorPage")
     public void verifyLoginWithIncorrectLoginAndPassword (String userName, String userPassword) {
-        LinkedinLoginPage linkedinLoginPage = new LinkedinLoginPage(webDriver);
         Assert.assertTrue(linkedinLoginPage.isPageLoaded(),
                 "Sing In button is missing");
 
@@ -89,7 +73,6 @@ public class LinkedinLoginTest {
 
     @Test(dataProvider = "NegativeDataProviderErrorPage")
     public void verifyLoginWithIncorrectLoginError (String userName, String userPassword) {
-        LinkedinLoginPage linkedinLoginPage = new LinkedinLoginPage(webDriver);
         Assert.assertTrue(linkedinLoginPage.isPageLoaded(),
                 "Login page is not loaded");
 

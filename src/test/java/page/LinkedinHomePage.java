@@ -1,28 +1,28 @@
-import org.openqa.selenium.By;
+package page;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class LinkedinHomePage extends LinkedinBasePage {
 
+    @FindBy(xpath = "//*[@id='profile-nav-item']")
     private WebElement profileMenu;
+    @FindBy(xpath = "//*[@role='combobox']")
     private WebElement searchField;
+    @FindBy(xpath = "//*[@id='nav-search-controls-wormhole']/button")
     private WebElement searchButton;
 
 
     public LinkedinHomePage(WebDriver webDriver) {
         super(webDriver);
-        initElements();
+        PageFactory.initElements(webDriver, this);
     }
 
     @Override
-    boolean isPageLoaded() {
+    public boolean isPageLoaded() {
         return profileMenu.isDisplayed();
-    }
-
-    public void initElements() {
-        profileMenu = webDriver.findElement(By.xpath("//*[@id='profile-nav-item']"));
-        searchField = webDriver.findElement(By.xpath("//*[@role='combobox']"));
-        searchButton = webDriver.findElement(By.xpath("//*[@id='nav-search-controls-wormhole']/button"));
     }
 
     public void search (String searchText){
