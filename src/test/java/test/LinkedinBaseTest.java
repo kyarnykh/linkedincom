@@ -11,7 +11,6 @@ public abstract class LinkedinBaseTest {
     public  WebDriver webDriver;
     LinkedinLoginPage linkedinLoginPage;
 
-
     @BeforeMethod
     public void before() {
         webDriver = new FirefoxDriver();
