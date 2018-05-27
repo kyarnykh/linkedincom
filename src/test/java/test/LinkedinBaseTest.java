@@ -17,7 +17,6 @@ public abstract class LinkedinBaseTest {
         webDriver = new FirefoxDriver();
         webDriver.get("https://www.linkedin.com");
         linkedinLoginPage = new LinkedinLoginPage(webDriver);
-
     }
 
     @AfterMethod

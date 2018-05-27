@@ -9,8 +9,10 @@ public class LinkedinHomePage extends LinkedinBasePage {
 
     @FindBy(xpath = "//*[@id='profile-nav-item']")
     private WebElement profileMenu;
+
     @FindBy(xpath = "//*[@role='combobox']")
     private WebElement searchField;
+
     @FindBy(xpath = "//*[@id='nav-search-controls-wormhole']/button")
     private WebElement searchButton;
 
@@ -25,9 +27,10 @@ public class LinkedinHomePage extends LinkedinBasePage {
         return profileMenu.isDisplayed();
     }
 
-    public void search (String searchText){
+    public LinkedinSearchPage search (String searchText){
         searchField.sendKeys(searchText);
         searchButton.click();
+        return new LinkedinSearchPage(webDriver);
     }
 
 }

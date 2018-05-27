@@ -34,10 +34,17 @@ public class LinkedinLoginPage extends LinkedinBasePage {
         userPasswordField.sendKeys(userPassword);
         signInButton.click();
         return PageFactory.initElements(webDriver, LinkedinHomePage.class);
-//        return new LinkedinHomePage(webDriver);
     }
 
-    public void restoreButton() {
+    public LinkedinErrorPage loginError(String userEmail, String userPassword){
+        userEmailField.sendKeys(userEmail);
+        userPasswordField.sendKeys(userPassword);
+        signInButton.click();
+        return new LinkedinErrorPage(webDriver);
+    }
+
+    public LinkedinSubmitPage restoreButton() {
         forgotButton.click();
+        return new LinkedinSubmitPage(webDriver);
     }
 }

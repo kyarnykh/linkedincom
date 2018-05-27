@@ -50,7 +50,6 @@ public class LinkedinLoginTest extends LinkedinBaseTest {
                 "Home page is not loaded");
     }
 
-
     @Test(dataProvider = "NegativeDataProviderLoginPage")
     public void verifyLoginAndPasswordWithEmptySpace (String userName, String userPassword) {
         linkedinLoginPage.login(userName, userPassword);
@@ -58,15 +57,11 @@ public class LinkedinLoginTest extends LinkedinBaseTest {
                 "Sing In button is missing");
     }
 
-
     @Test(dataProvider = "NegativeDataProviderErrorPage")
     public void verifyLoginWithIncorrectLoginAndPassword (String userName, String userPassword) {
         Assert.assertTrue(linkedinLoginPage.isPageLoaded(),
                 "Sing In button is missing");
-
-        linkedinLoginPage.login(userName, userPassword);
-
-        LinkedinErrorPage linkedinErrorPage = new LinkedinErrorPage(webDriver);
+        LinkedinErrorPage linkedinErrorPage = linkedinLoginPage.loginError(userName, userPassword);
         Assert.assertEquals(linkedinErrorPage.getBannerErrorMessage(), "При заполнении формы были допущены ошибки. Проверьте и исправьте отмеченные поля.",
                 "Error banner is missing");
     }
@@ -75,10 +70,7 @@ public class LinkedinLoginTest extends LinkedinBaseTest {
     public void verifyLoginWithIncorrectLoginError (String userName, String userPassword) {
         Assert.assertTrue(linkedinLoginPage.isPageLoaded(),
                 "Login page is not loaded");
-
-        linkedinLoginPage.login(userName, userPassword);
-
-        LinkedinErrorPage linkedinErrorPage = new LinkedinErrorPage(webDriver);
+        LinkedinErrorPage linkedinErrorPage = linkedinLoginPage.loginError(userName, userPassword);
         Assert.assertTrue(linkedinErrorPage.isPageLoaded(),
                 "Error is missing");
     }

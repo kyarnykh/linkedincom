@@ -1,29 +1,26 @@
 package page;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import page.LinkedinBasePage;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class LinkedinErrorPage extends LinkedinBasePage {
 
+    @FindBy (xpath = "//*[@id='session_key-login-error']")
     private WebElement loginErrorMessage;
+
+    @FindBy (xpath = "//div[@role='alert']")
     private WebElement bannerErrorMessage;
 
     public LinkedinErrorPage(WebDriver webDriver) {
         super(webDriver);
-        initElements();
+        PageFactory.initElements(webDriver, this);
     }
 
     @Override
     public boolean isPageLoaded() {
         return loginErrorMessage.isDisplayed();
-    }
-
-    private void initElements(){
-        loginErrorMessage = webDriver.findElement(By.xpath("//*[@id='session_key-login-error']"));
-        bannerErrorMessage = webDriver.findElement(By.xpath("//div[@role='alert']"));
-
     }
 
     public String getBannerErrorMessage() {

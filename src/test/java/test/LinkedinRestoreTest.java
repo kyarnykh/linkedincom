@@ -11,26 +11,21 @@ public class LinkedinRestoreTest extends LinkedinBaseTest {
     @DataProvider
     public Object[][] DataRestore() {
         return new Object[][]{
-                {"???@gmail.com", "////"},
+                {"*****@gmail.com", "*******"},
         };
     }
 
 
     @Test(dataProvider = "DataRestore")
-    public void successfulResetPasswordTest(String userEmail, String NewPassword) {
-        LinkedinLoginPage linkedinLoginPage = new LinkedinLoginPage(webDriver);
+    public void successfulResetPasswordTest(String userEmail, String userPassword) {
         Assert.assertTrue(linkedinLoginPage.isPageLoaded(),
                 "Login page is not loaded");
 
-        linkedinLoginPage.restoreButton();
-
-        LinkedinSubmitPage linkedinSubmitPage = new LinkedinSubmitPage(webDriver);
+        LinkedinSubmitPage linkedinSubmitPage = linkedinLoginPage.restoreButton();
         Assert.assertTrue(linkedinSubmitPage.isPageLoaded(),
                 "Submit page is not loaded");
 
-        linkedinSubmitPage.submit(userEmail);
-
-        LinkedinResetPage linkedinResetPage = new LinkedinResetPage (webDriver);
+        LinkedinResetPage linkedinResetPage = linkedinSubmitPage.submit(userEmail);
         Assert.assertTrue(linkedinResetPage.isPageLoaded());
 
 //        getResetPasswordLinkFromEmail();
@@ -39,20 +34,9 @@ public class LinkedinRestoreTest extends LinkedinBaseTest {
         Assert.assertTrue(linkedinConfirmPassword.isPageLoaded(),
                 "Page is not loaded");
 
-        linkedinConfirmPassword.submit(NewPassword);
-
-        LinkedinSuccessPage linkedinSuccessPage = new LinkedinSuccessPage(webDriver);
-        Assert.assertTrue(linkedinSuccessPage.isPageLoaded(),
-                "Success page is not loaded");
-
-        linkedinSuccessPage.goHomePage();
-
-        linkedinLoginPage.login(userEmail, NewPassword);
-
-        LinkedinHomePage linkedinHomePage = new LinkedinHomePage(webDriver);
+        LinkedinHomePage linkedinHomePage = linkedinConfirmPassword.submit(userPassword);
         Assert.assertTrue(linkedinHomePage.isPageLoaded(),
                 "Home page is not loaded");
-
 
     }
 }
