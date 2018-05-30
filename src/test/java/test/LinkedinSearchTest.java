@@ -16,7 +16,7 @@ public class LinkedinSearchTest extends LinkedinBaseTest {
     @DataProvider
     public Object[][] DataSearch() {
         return new Object[][]{
-                {"****@gmail.com", "****", "HR"},
+                {"******@gmail.com", "********", "HR"},
         };
     }
 
@@ -43,7 +43,7 @@ public class LinkedinSearchTest extends LinkedinBaseTest {
 
         for(String result:resultsList){
             Assert.assertTrue(result.contains(Searchterm),
-                    "Searchterm"+Searchterm+"is missing in following results: \n"+result);
+                    "Searchterm "+Searchterm+" is missing in following results: \n"+result);
         }
 
     }

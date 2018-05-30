@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LinkedinConfirmPasswordPage extends LinkedinBasePage {
+public class LinkedinConfirmNewPasswordPage extends LinkedinBasePage {
 
     @FindBy (xpath = "//*[@id='newPassword']")
     private WebElement newPasswordField;
@@ -16,7 +16,7 @@ public class LinkedinConfirmPasswordPage extends LinkedinBasePage {
     @FindBy (xpath = "//*[@id='reset-password-submit-button']")
     private WebElement resetButton;
 
-    public LinkedinConfirmPasswordPage(WebDriver webDriver) {
+    public LinkedinConfirmNewPasswordPage(WebDriver webDriver) {
         super(webDriver);
         PageFactory.initElements(webDriver, this);
     }
