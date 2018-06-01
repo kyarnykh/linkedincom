@@ -35,6 +35,7 @@ public class LinkedinConfirmNewPasswordPage extends LinkedinBasePage {
      */
     @Override
     public boolean isPageLoaded() {
+        waitUntilElementIsClickable(resetButton,10);
         return resetButton.isDisplayed();
     }
 
@@ -43,7 +44,7 @@ public class LinkedinConfirmNewPasswordPage extends LinkedinBasePage {
      * @param userPassword - new user password
      * @return - next new Page
      */
-    public LinkedinHomePage submit(String userPassword) {
+    public LinkedinHomePage submitNewUserPassword(String userPassword) {
         newPasswordField.sendKeys();
         confirmPasswordField.sendKeys();
         resetButton.click();

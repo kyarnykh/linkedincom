@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import util.GMailService;
 
 /**
  * PageObject of LinkedinRequestPasswordResetSubmitPage with methods and variables
@@ -30,6 +29,7 @@ public class LinkedinRequestPasswordResetSubmitPage extends LinkedinBasePage {
      */
     @Override
     public boolean isPageLoaded() {
+        waitUntilElementIsClickable(sendButton,180);
         return sendButton.isDisplayed();
     }
 
@@ -37,15 +37,16 @@ public class LinkedinRequestPasswordResetSubmitPage extends LinkedinBasePage {
      * Method for click on the link from user email
      * @return next new Page
      */
-    public LinkedinConfirmNewPasswordPage navigateToLinkFromEmail(String userEmail) {
-        String messageSubject = "enter email subj here";
-        String messageTo = userEmail;
-        String messageFrom = "SST TAU <security-noreply@linkedin.com>";
+    public LinkedinConfirmNewPasswordPage navigateToLinkFromEmail() {
+        String messageSubject = "данное сообщение содержит ссылку для изменения пароля";
+        String messageTo = "kostia.yarnykh@gmail.com";
+        String messageFrom = "security-noreply@linkedin.com";
 
-        GMailService gMailService = new GMailService();
-        gMailService.connect();
-        String message = gMailService.waitMessage(messageSubject, messageTo, messageFrom, 10);
+        String message = gMailService.waitMessage(messageSubject, messageTo, messageFrom, 200);
         System.out.println("Content: " + message);
+
+
+
 
 
         return new LinkedinConfirmNewPasswordPage(webDriver);
