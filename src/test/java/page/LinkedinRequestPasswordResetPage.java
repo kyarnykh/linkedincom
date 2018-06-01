@@ -5,6 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+/**
+ * PageObject of LinkedinRequestPasswordResetPage with methods and variables
+ */
 public class LinkedinRequestPasswordResetPage extends LinkedinBasePage {
 
     @FindBy (xpath = "//*[@id='reset-password-submit-button']")
@@ -13,16 +16,30 @@ public class LinkedinRequestPasswordResetPage extends LinkedinBasePage {
     @FindBy (xpath = "//*[@id='username']")
     private WebElement userEmailField;
 
+    /**
+     * Constructor of LinkedinRequestPasswordResetPage class
+     * @param webDriver - current webDriver object
+     * PageFactory - initialisation WebElements on THIS page and write their location of page in RAM
+     */
     public LinkedinRequestPasswordResetPage(WebDriver webDriver) {
         super(webDriver);
         PageFactory.initElements(webDriver, this);
     }
 
+    /**
+     * Check if Page is loaded
+     * @return true/fail
+     */
     @Override
     public boolean isPageLoaded() {
         return submitButton.isDisplayed();
     }
 
+    /**
+     * Method for send user email
+     * @param Email - user email
+     * @return next new Page
+     */
     public LinkedinRequestPasswordResetSubmitPage submit(String Email) {
         userEmailField.sendKeys(Email);
         submitButton.click();

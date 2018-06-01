@@ -9,6 +9,9 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * PageObject of LinkedinSearchPage with methods and variables
+ */
 public class LinkedinSearchPage extends LinkedinBasePage {
 
 
@@ -18,20 +21,37 @@ public class LinkedinSearchPage extends LinkedinBasePage {
     @FindBy (xpath = "//li[contains(@class, 'search-result__occluded-item')]")
     List<WebElement> searchResults;
 
+    /**
+     * Constructor of LinkedinSearchPage class
+     * @param webDriver - current webDriver object
+     * PageFactory - initialisation WebElements on THIS page and write their location of page in RAM
+     */
     public LinkedinSearchPage(WebDriver webDriver) {
         super(webDriver);
         PageFactory.initElements(webDriver, this);
     }
 
+    /**
+     * Check if Page is loaded
+     * @return true/fail
+     */
     @Override
     public boolean isPageLoaded() {
         return searchMenu.isDisplayed();
     }
 
+    /**
+     * Counts search results
+     * @return int size
+     */
     public int getResultsCount() {
         return searchResults.size();
     }
 
+    /**
+     * Constructor for display search results
+     * @return List of search results
+     */
     public List<String> getResultsList() {
         List<String> searchResultsList = new ArrayList<>();
         for (WebElement searchResult:searchResults){

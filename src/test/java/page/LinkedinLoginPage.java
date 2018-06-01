@@ -25,6 +25,7 @@ public class LinkedinLoginPage extends LinkedinBasePage {
     /**
      * Constructor of LinkedinLoginPage class
      * @param webDriver - current webDriver object
+     * PageFactory - initialisation WebElements on THIS page and write their location of page in RAM
      */
     public LinkedinLoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -33,13 +34,19 @@ public class LinkedinLoginPage extends LinkedinBasePage {
 
     /**
      * Check if Page is loaded
-     * @return true/fails
+     * @return true/fail
      */
     @Override
     public boolean isPageLoaded() {
         return signInButton.isDisplayed();
     }
 
+    /**
+     * Method for login by users
+     * @param userEmail - user email
+     * @param userPassword - user password
+     * @return next new Page and initialisation WebElement on the new Page
+     */
     public LinkedinHomePage login(String userEmail, String userPassword){
         userEmailField.sendKeys(userEmail);
         userPasswordField.sendKeys(userPassword);
@@ -47,6 +54,12 @@ public class LinkedinLoginPage extends LinkedinBasePage {
         return PageFactory.initElements(webDriver, LinkedinHomePage.class);
     }
 
+    /**
+     * Method for login by users with invalid data
+     * @param userEmail - incorrect user email
+     * @param userPassword - incorrect user password
+     * @return next new Page with error messages
+     */
     public LinkedinErrorPage loginError(String userEmail, String userPassword){
         userEmailField.sendKeys(userEmail);
         userPasswordField.sendKeys(userPassword);
@@ -54,6 +67,10 @@ public class LinkedinLoginPage extends LinkedinBasePage {
         return new LinkedinErrorPage(webDriver);
     }
 
+    /**
+     * Method for click by link
+     * @return - next new Page
+     */
     public LinkedinRequestPasswordResetPage clickOnForgotPasswordLink() {
         forgotButton.click();
         return new LinkedinRequestPasswordResetPage(webDriver);

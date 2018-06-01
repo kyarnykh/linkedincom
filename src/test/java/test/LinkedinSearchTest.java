@@ -9,10 +9,17 @@ import page.LinkedinSearchPage;
 import java.util.List;
 import static java.lang.Thread.sleep;
 
+/**
+ *  TestPage of LinkedinSearchTest with methods, variables and test data
+ */
 public class LinkedinSearchTest extends LinkedinBaseTest {
 
     public LinkedinSearchTest() {}
 
+    /**
+     * Test data for search
+     * @return user email, user password and text for searching
+     */
     @DataProvider
     public Object[][] DataSearch() {
         return new Object[][]{
@@ -21,6 +28,13 @@ public class LinkedinSearchTest extends LinkedinBaseTest {
     }
 
 
+    /**
+     * Method for count search term
+     * @param userEmail - correct user email
+     * @param userPassword - correct user password
+     * @param Searchterm - text for searching
+     * @throws InterruptedException - for page with search results
+     */
     @Test (dataProvider = "DataSearch")
     public void basicSearchTest(String userEmail, String userPassword, String Searchterm) throws InterruptedException {
         Assert.assertTrue(linkedinLoginPage.isPageLoaded(),

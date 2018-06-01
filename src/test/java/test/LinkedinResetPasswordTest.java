@@ -6,8 +6,15 @@ import org.testng.annotations.Test;
 import page.*;
 
 
+/**
+ * TestPage of LinkedinResetPasswordTest with methods, variables and test data
+ */
 public class LinkedinResetPasswordTest extends LinkedinBaseTest {
 
+    /**
+     * Test data for reset password
+     * @return user email and new user password
+     */
     @DataProvider
     public Object[][] DataRestore() {
         return new Object[][]{
@@ -16,6 +23,11 @@ public class LinkedinResetPasswordTest extends LinkedinBaseTest {
     }
 
 
+    /**
+     * Method for reset and set user password
+     * @param userEmail - user email
+     * @param userPassword - new user password
+     */
     @Test(dataProvider = "DataRestore")
     public void successfulResetPasswordTest(String userEmail, String userPassword) {
         Assert.assertTrue(linkedinLoginPage.isPageLoaded(),
