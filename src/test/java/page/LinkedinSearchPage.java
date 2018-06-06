@@ -37,6 +37,7 @@ public class LinkedinSearchPage extends LinkedinBasePage {
      */
     @Override
     public boolean isPageLoaded() {
+        waitUntilElementIsClickable(searchMenu, 20);
         return searchMenu.isDisplayed();
     }
 

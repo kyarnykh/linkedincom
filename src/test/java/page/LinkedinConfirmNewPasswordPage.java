@@ -19,6 +19,10 @@ public class LinkedinConfirmNewPasswordPage extends LinkedinBasePage {
     @FindBy (xpath = "//*[@id='reset-password-submit-button']")
     private WebElement resetButton;
 
+    @FindBy (xpath = "//*[@id='reset-password-submit-button']")
+    private WebElement goToHomeButtom;
+
+
     /**
      * Constructor of LinkedinConfirmNewPasswordPage class
      * @param webDriver - current webDriver object
@@ -35,19 +39,22 @@ public class LinkedinConfirmNewPasswordPage extends LinkedinBasePage {
      */
     @Override
     public boolean isPageLoaded() {
-        waitUntilElementIsClickable(resetButton,10);
+        waitUntilElementIsClickable(resetButton,30);
         return resetButton.isDisplayed();
     }
 
     /**
      * Method for set and confirm new user password
-     * @param userPassword - new user password
+     * @param newPassword - new user password
+     * @param confirmPassword - new user password
      * @return - next new Page
      */
-    public LinkedinHomePage submitNewUserPassword(String userPassword) {
-        newPasswordField.sendKeys();
-        confirmPasswordField.sendKeys();
+    public LinkedinHomePage submitNewUserPassword(String newPassword, String confirmPassword) {
+        newPasswordField.sendKeys(newPassword);
+        confirmPasswordField.sendKeys(confirmPassword);
         resetButton.click();
+        waitUntilElementIsClickable(goToHomeButtom, 60);
+        goToHomeButtom.click();
         return new LinkedinHomePage(webDriver);
     }
 

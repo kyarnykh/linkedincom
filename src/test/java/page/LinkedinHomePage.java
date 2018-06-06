@@ -36,6 +36,7 @@ public class LinkedinHomePage extends LinkedinBasePage {
      */
     @Override
     public boolean isPageLoaded() {
+        waitUntilElementIsClickable(profileMenu, 120);
         return profileMenu.isDisplayed();
     }
 

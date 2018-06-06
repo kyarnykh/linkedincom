@@ -16,9 +16,9 @@ public class LinkedinResetPasswordTest extends LinkedinBaseTest {
      * @return user email and new user password
      */
     @DataProvider
-    public Object[][] DataRestore() {
+    public Object[][] DataReset() {
         return new Object[][]{
-                {"************@gmail.com", "********"},
+                {"******@gmail.com", "********", "***********"},
         };
     }
 
@@ -26,10 +26,11 @@ public class LinkedinResetPasswordTest extends LinkedinBaseTest {
     /**
      * Method for reset and set user password
      * @param userEmail - user email
-     * @param userPassword - new user password
+     * @param newPassword - new user password
+     * @param confirmPassword - new user password
      */
-    @Test(dataProvider = "DataRestore")
-    public void successfulResetPasswordTest(String userEmail, String userPassword) {
+    @Test(dataProvider = "DataReset")
+    public void successfulResetPasswordTest(String userEmail, String newPassword, String confirmPassword) {
         Assert.assertTrue(linkedinLoginPage.isPageLoaded(),
                 "Login page is not loaded");
 
@@ -45,7 +46,7 @@ public class LinkedinResetPasswordTest extends LinkedinBaseTest {
         Assert.assertTrue(linkedinConfirmNewPasswordPage.isPageLoaded(),
                 "Confirm page is not loaded");
 
-        LinkedinHomePage linkedinHomePage = linkedinConfirmNewPasswordPage.submitNewUserPassword(userPassword);
+        LinkedinHomePage linkedinHomePage = linkedinConfirmNewPasswordPage.submitNewUserPassword(newPassword, confirmPassword);
         Assert.assertTrue(linkedinHomePage.isPageLoaded(),
                 "Home page is not loaded");
 

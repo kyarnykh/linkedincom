@@ -39,8 +39,8 @@ public class GMailService {
      * Default GMailService constructor with predefined user/pass credentials
      */
     public GMailService(){
-        this.user = "********@gmail.com";
-        this.pass = "********";
+        this.user = "kostia.yarnykh@gmail.com";
+        this.pass = "@Yarik_88910106";
     }
 
     /**
