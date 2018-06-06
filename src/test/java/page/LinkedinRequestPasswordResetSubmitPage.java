@@ -36,8 +36,6 @@ public class LinkedinRequestPasswordResetSubmitPage extends LinkedinBasePage {
     }
 
     /**
-     *
-     /**
      * Method for click on the link from user email
      * @return next new Page
      */
