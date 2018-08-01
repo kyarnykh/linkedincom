@@ -35,5 +35,4 @@ public abstract class LinkedinBasePage {
         return webElement;
     }
 
-
 }

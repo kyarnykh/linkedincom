@@ -53,4 +53,5 @@ public class LinkedinRequestPasswordResetSubmitPage extends LinkedinBasePage {
 
         return new LinkedinConfirmNewPasswordPage(webDriver);
     }
+
 }

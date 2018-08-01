@@ -41,5 +41,3 @@ Add source code to GitHub:
      7. Enter commit text that describes changes
      8. Select VCS => Git => "Push"
      9. Select needed branch and press "Push" button
-
-

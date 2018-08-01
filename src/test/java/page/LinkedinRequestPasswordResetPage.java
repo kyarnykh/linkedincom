@@ -46,4 +46,5 @@ public class LinkedinRequestPasswordResetPage extends LinkedinBasePage {
         submitButton.click();
         return new LinkedinRequestPasswordResetSubmitPage(webDriver);
     }
+
 }

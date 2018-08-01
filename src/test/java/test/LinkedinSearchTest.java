@@ -46,12 +46,10 @@ public class LinkedinSearchTest extends LinkedinBaseTest {
 
         Assert.assertTrue(linkedinSearchPage.isPageLoaded(),
                 "Search page is not loaded");
-
         Assert.assertEquals(linkedinSearchPage.getResultsCount(), 10,
                 "Search results count is wrong");
 
         List<String> resultsList = linkedinSearchPage.getResultsList();
-
         for(String result:resultsList){
             Assert.assertTrue(result.contains(searchTerm),
                     "Searchterm "+searchTerm+" is missing in following results: \n"+result);

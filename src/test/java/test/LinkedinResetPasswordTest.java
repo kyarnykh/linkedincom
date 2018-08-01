@@ -22,7 +22,6 @@ public class LinkedinResetPasswordTest extends LinkedinBaseTest {
         };
     }
 
-
     /**
      * Method for reset and set user password
      * @param userEmail - user email

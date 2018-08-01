@@ -75,4 +75,5 @@ public class LinkedinLoginPage extends LinkedinBasePage {
         forgotButton.click();
         return new LinkedinRequestPasswordResetPage(webDriver);
     }
+
 }

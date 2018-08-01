@@ -63,4 +63,5 @@ public class LinkedinSearchPage extends LinkedinBasePage {
         }
         return searchResultsList;
     }
+
 }

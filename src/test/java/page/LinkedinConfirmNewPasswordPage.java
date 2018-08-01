@@ -57,5 +57,4 @@ public class LinkedinConfirmNewPasswordPage extends LinkedinBasePage {
         goToHomeButtom.click();
         return new LinkedinHomePage(webDriver);
     }
-
 }

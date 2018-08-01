@@ -37,5 +37,4 @@ public abstract class LinkedinBaseTest {
         webDriver.close();
     }
 
-
 }

@@ -171,7 +171,6 @@ public class GMailService {
                     return s;
             }
         }
-
         return null;
     }
 

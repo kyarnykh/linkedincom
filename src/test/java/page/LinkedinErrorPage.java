@@ -43,5 +43,4 @@ public class LinkedinErrorPage extends LinkedinBasePage {
         return bannerErrorMessage.getText();
     }
 
-
 }

@@ -55,7 +55,6 @@ public class LinkedinLoginTest extends LinkedinBaseTest {
         };
     }
 
-
     /**
      * Test for check successful login by users
      * @param userEmail - correct user email
